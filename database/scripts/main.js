@@ -32,6 +32,8 @@ var myPostsMenuButton = document.getElementById('menu-my-posts');
 var myTopPostsMenuButton = document.getElementById('menu-my-top-posts');
 var listeningFirebaseRefs = [];
 
+var client = new ClientJS();
+
 /**
  * Saves a new post to the Firebase DB.
  */
@@ -438,9 +440,10 @@ window.addEventListener('load', function() {
     showSection(topUserPostsSection, myTopPostsMenuButton);
   };
   addButton.onclick = function() {
-    showSection(addPost);
+    console.log("LOL"+client.getFingerprint(), client.getBrowser());
+/*    showSection(addPost);
     messageInput.value = '';
-    titleInput.value = '';
+    titleInput.value = '';*/
   };
   recentMenuButton.onclick();
 }, false);
