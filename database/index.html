@@ -139,11 +139,48 @@
 <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
 <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
 <script src="scripts/client.min.js"></script>
-<script src="/__/firebase/3.9.0/firebase-app.js"></script>
-<script src="/__/firebase/3.9.0/firebase-auth.js"></script>
-<script src="/__/firebase/3.9.0/firebase-database.js"></script>
-<script src="/__/firebase/init.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase-messaging.js"></script>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyDip2_CjJkiXe79GJoa9nM4V_9EnZ9amNA",
+    authDomain: "prm2-fingerprint.firebaseapp.com",
+    databaseURL: "https://prm2-fingerprint.firebaseio.com",
+    projectId: "prm2-fingerprint",
+    storageBucket: "prm2-fingerprint.appspot.com",
+    messagingSenderId: "358480355325"
+  };
+
+  var clientjs = ClientJS();
+  var bar = '|';
+
+      var userAgent = clienjs.getBrowserData().ua;
+      var screenPrint = clientjs.getScreenPrint();
+      var pluginList = clientjs.getPlugins();
+      var fontList = clientjs.getFonts();
+      var localStorage = clientjs.isLocalStorage();
+      var sessionStorage = clientjs.isSessionStorage();
+      var timeZone = clientjs.getTimeZone();
+      var language = clientjs.getLanguage();
+      var systemLanguage = clientjs.getSystemLanguage();
+      var cookies = clientjs.isCookie();
+      var canvasPrint = clientjs.getCanvasPrint();
+
+      var fingerprint = userAgent + bar + screenPrint + bar + pluginList + bar + fontList + bar + localStorage + bar + sessionStorage + bar + timeZone + bar + language + bar + systemLanguage + bar + cookies + bar + canvasPrint;
+  var hash = clientjs.getFingerprint();
+  firebase.database().ref('hashes/').set({
+    hash: fingerprint
+  });
+</script>
 
 <script src="scripts/main.js"></script>
 </body>
+
 </html>
